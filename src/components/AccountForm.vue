@@ -3,17 +3,19 @@ import { AppState } from '@/AppState.js';
 import { accountService } from '@/services/AccountService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const account = computed(() => AppState.account)
 
+onMounted(() => editableAccountData.value = { ...account.value })
+
 const editableAccountData = ref({
-  name: account.value.name,
-  picture: account.value.picture,
-  bio: account.value.bio,
-  coverImg: account.value.coverImg,
-  resume: account.value.resume,
-  graduated: account.value.graduated
+  name: '',
+  picture: '',
+  bio: '',
+  coverImg: '',
+  resume: '',
+  graduated: false
 })
 
 async function updateAccount() {
