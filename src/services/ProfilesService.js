@@ -5,7 +5,7 @@ import { AppState } from "@/AppState.js"
 
 class ProfilesService {
   async getProfileById(profileId) {
-    AppState.activeProfile = null
+    AppState.activeProfile = null // clears out ghost data
     const response = await api.get(`api/profiles/${profileId}`)
     logger.log('GOT PROFILE 💂‍♀️', response.data)
     const profile = new Account(response.data)

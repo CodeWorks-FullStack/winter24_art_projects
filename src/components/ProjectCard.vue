@@ -25,6 +25,7 @@ function setActiveProject() {
             Browse Images
           </button>
         </div>
+        <!-- NOTE if your route has a route parameter associated with it (/:profileId) you must supply a value for that route parameter on your router link -->
         <router-link :to="{ name: 'Profile', params: { profileId: projectProp.creatorId } }"
           :title="`Go to ${projectProp.creator.name}'s profile page!`">
           <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img">

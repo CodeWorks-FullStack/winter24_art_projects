@@ -14,6 +14,7 @@ const projects = computed(() => AppState.projects)
 // NOTE gives us information about the current route in the router-view
 const route = useRoute()
 
+// NOTE watch can observe a watchable object (ref, computed, reactive) (1st argument) and will run a callback function (2nd argument) whenever something about that object changes. Our 3rd argument tells watch to run its callback function when this component loads (similar to onMounted)
 watch(route, () => {
   getProfileById()
   getProjectsByCreatorId()
@@ -71,6 +72,7 @@ async function getProjectsByCreatorId() {
     </section>
     <section class="row">
       <div v-for="project in projects" :key="project.id" class="col-md-4 mb-3">
+        <!-- reusable components are great 😊 -->
         <ProjectCard :projectProp="project" />
       </div>
     </section>

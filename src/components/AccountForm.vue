@@ -7,6 +7,7 @@ import { computed, onMounted, ref } from 'vue';
 
 const account = computed(() => AppState.account)
 
+// NOTE ... is the spread operator. Essentially this allows us to create a brand new object with all of the same properties as the account object in the appstate. We need to make a copy of the account (break reference) here otherwise the object in the ref is the exact same object as the one in our appstate, and our form inputs will directly edit the appstate
 onMounted(() => editableAccountData.value = { ...account.value })
 
 const editableAccountData = ref({
