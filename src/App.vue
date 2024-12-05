@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
 import { AppState } from './AppState.js';
+import ProjectModal from './components/ProjectModal.vue';
 
 </script>
 
@@ -14,10 +15,13 @@ import { AppState } from './AppState.js';
   <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer>
+
+  <ProjectModal />
 </template>
 
 <style lang="scss">
 @import '@/assets/scss/main.scss';
+
 :root {
   --main-height: calc(100vh - 32px - 64px);
 }
