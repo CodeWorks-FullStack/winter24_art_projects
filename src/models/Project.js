@@ -1,3 +1,5 @@
+import { Account } from "./Account.js"
+
 export class Project {
   constructor(data) {
     this.id = data.id
@@ -7,7 +9,7 @@ export class Project {
     this.projectImgs = data.projectImgs
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
-    // TODO show how to get intellisense on this
-    this.creator = data.creator
+    // TODO show how to get intellisense on this ✅
+    this.creator = new Account(data.creator)
   }
 }
