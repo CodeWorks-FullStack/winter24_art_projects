@@ -1,21 +1,29 @@
 <script setup>
 import { Project } from '@/models/Project.js';
+import { projectsService } from '@/services/ProjectsService.js';
 
-defineProps({
+const props = defineProps({
   projectProp: { type: Project, required: true }
 })
+
+function setActiveProject() {
+  projectsService.setActiveProject(props.projectProp)
+}
 </script>
 
 
 <template>
   <div class="card">
-    <img :src="projectProp.coverImg" class="card-img-top" alt="...">
+    <img :src="projectProp.coverImg" class="card-img-top" :alt="projectProp.title">
     <div class="card-body">
       <h5 class="card-title">{{ projectProp.title }}</h5>
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <p class="card-text">Project Images: {{ projectProp.projectImgs.length }}</p>
-          <button class="btn btn-primary" type="button">Browse Images</button>
+          <button @click="setActiveProject()" class="btn btn-primary" type="button" data-bs-toggle="modal"
+            data-bs-target="#projectModal">
+            Browse Images
+          </button>
         </div>
         <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img">
       </div>
