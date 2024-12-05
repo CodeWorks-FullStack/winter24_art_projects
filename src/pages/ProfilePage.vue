@@ -5,7 +5,7 @@ import { profilesService } from '@/services/ProfilesService.js';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const profile = computed(() => AppState.activeProfile)
@@ -14,10 +14,10 @@ const projects = computed(() => AppState.projects)
 // NOTE gives us information about the current route in the router-view
 const route = useRoute()
 
-onMounted(() => {
+watch(route, () => {
   getProfileById()
   getProjectsByCreatorId()
-})
+}, { immediate: true })
 
 async function getProfileById() {
   try {
