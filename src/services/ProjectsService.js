@@ -4,6 +4,10 @@ import { Project } from "@/models/Project.js"
 import { AppState } from "@/AppState.js"
 
 class ProjectsService {
+  async getProjectsByCreatorId(profileId) {
+    const response = await api.get(`api/projects?creatorId=${profileId}`)
+    logger.log('GOT PORJECTS BY CREATOR ID', response.data)
+  }
   async getProjects() {
     const response = await api.get('api/projects')
     logger.log('GOT PROJECTS 🖼️', response.data)
