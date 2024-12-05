@@ -7,6 +7,8 @@ class ProjectsService {
   async getProjectsByCreatorId(profileId) {
     const response = await api.get(`api/projects?creatorId=${profileId}`)
     logger.log('GOT PORJECTS BY CREATOR ID', response.data)
+    const projects = response.data.map(projectPOJO => new Project(projectPOJO))
+    AppState.projects = projects
   }
   async getProjects() {
     const response = await api.get('api/projects')

@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import ProjectCard from '@/components/ProjectCard.vue';
 import { profilesService } from '@/services/ProfilesService.js';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -8,6 +9,7 @@ import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const profile = computed(() => AppState.activeProfile)
+const projects = computed(() => AppState.projects)
 
 // NOTE gives us information about the current route in the router-view
 const route = useRoute()
@@ -65,6 +67,11 @@ async function getProjectsByCreatorId() {
         <div class="p-3">
           <p>{{ profile.bio }}</p>
         </div>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="project in projects" :key="project.id" class="col-md-4 mb-3">
+        <ProjectCard :projectProp="project" />
       </div>
     </section>
   </div>
